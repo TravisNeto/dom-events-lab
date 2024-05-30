@@ -1,0 +1,62 @@
+
+// USER STORIES
+
+// general goal
+1. As a user, I want to be able to select numbers so that I can perform operations with them.
+
+
+//features for operations
+2. As a user, I want to be able to add two numbers together.
+// add
+
+// render function
+3. As a user, I want to be able to subtract one number from another.
+
+
+ICEBOX
+// operation functions
+4. As a user, I want to be able to multiply two numbers together.
+
+5. As a user, I want to be able to divide one number by another.
+
+6. As a user, I want to be able to see the output of the mathematical operation.
+
+// reset function
+7. As a user, I want to be able to clear all operations and start from 0.
+
+// calculator
+
+//constants ? complex data [] {} ?
+//variables
+    // tbd
+    // num1 = number(button text)
+    // num2 = number(button text)
+    // operator - "+", "-", "/", "*"
+    // result = "3.14"
+
+
+// dom elements -
+    // buttons
+    //    div.number
+    //    div.operator
+    //    div.equal
+    // result - .display
+
+// functions 
+
+const updateNumbers = (event) => {
+    console.log(event.target.textContent)
+}
+
+// if i have the number (textContent) -> how do i update state?
+
+// event handler -
+
+numberBtnEls.forEach((numberBtnEl)=> {
+    // console.log(numBtnEl)
+
+    // Goal: add an event listener to the button?
+    numberBtnEl.addEventListener('click', updateNumbers)
+})
+    // click handler for each group of elements 
+    //functionality will be tied to its button
