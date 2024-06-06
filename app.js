@@ -18,9 +18,9 @@
 //     // operator - "+", "-", "/", "*"
 //     // result = "3.14"
 
-let num1
-let num2
-let operator
+let num1 = "";
+let num2 = "";
+let operator = "";
 let result = 0
 
 // // dom elements -
@@ -32,9 +32,9 @@ let result = 0
 
     const numberBtnEls = document.querySelectorAll('.number')
     const operatorBtnEls = document.querySelectorAll('.operator')
-    const equalBtnEls = document.querySelector('.equal')
+    const equalBtnEls = document.querySelector('.equals')
     const displayEl = document.querySelector('.display')
-    
+    const resetCalcEls = document.querySelector('.C')
 
 
     // functions
@@ -47,7 +47,7 @@ let result = 0
 
     const updateResult = () => {
 
-        result = num1
+        result = (num1)
         render()
     }
 
@@ -64,31 +64,60 @@ let result = 0
             num1 = event.target.textContent
         } else {
             num1 += event.target.textContent   
-        }
-            
+        }   
+            result = (num1)
         } else{
-            if(!num1){
-                num1 = event.target.textContent
-            } else {
-                num1 += event.target.textContent   
-            }
-    
+           
             if (!num2){
                 num2 = event.target.textContent
             }else {
                 num2 += event.target.textContent
             }
+            result = (num2)
         }
 
-        updateResult()
+        render()
         // console.log(`num1: ${num1}`, `num2: ${num2}`)
+        }
+
+        const resetCalc = () => {
+            num1 = '';
+            num2 = '';
+            operator = '';
+            result = 0;
+        }
+
+        const updateOperators = (event) => {
+            operator = event.target.textContent
+                if (operator === 'C'){
+                    resetCalc()
+                    render()
+                }
+        };
+
+        const updateEquals = (event) => {
+            if (operator === '+') {
+                result = Number(num1)+(Number(num2))
+            }
+            if (operator === '-') {
+                result = Number(num1)-(Number(num2))
+
+            } 
+            if (operator === '*') {
+                result = Number(num1)*(Number(num2))
+            }
+            if (operator === '/') {
+                result = Number(num1)/(Number(num2))
+            }
+
+        render()
         }
        
 
 
-    const updateEqual = (event) => {
-        console.log(event.target.textContent)
-        }
+    //const updateEquals = (event) => {
+        // console.log(event.target.textContent)
+        // }
 
         // to take the current number (num1) -> update result
        
@@ -97,26 +126,36 @@ let result = 0
     render()
 
 
-    const updateOperator = (event) => {
-        console.log(event.target.textContent)
-        operator = event.target.textContent
-        event.target.style.border = 'solid white'
+    const handleCalculate = () => {
+        console.log(`${num1} ${operator} ${num2}`)
+        if (operator === '+'){
+            updateResult(Number(num1)+Number(num2))
+        }
+
     }
+
+
+    // const updateOperator = (event) => {
+    //     console.log(event.target.textContent)
+    //     operator = event.target.textContent
+    //     event.target.style.border = 'solid white'
+    //}
 
 numberBtnEls.forEach((numBtnEl) =>{
   numBtnEl.addEventListener('click', updateNumbers)
 })
 
 operatorBtnEls.forEach((opBtnEl) => {
-  opBtnEl.addEventListener('click', updateOperator)
+  opBtnEl.addEventListener('click', updateOperators)
   
 })
 
-equalBtnEl.forEach((eqBtnEl) => {
-  eqBtnEl.addEventListener('click', updateEqual)
-})
+  equalBtnEls.addEventListener('click', updateEquals)
 
+// resetCalcEls.forEach((C) => {
+//     resetCalcEls.addEventListener('click', C)
+// })
 
-operator = event.target.textContent
+// operator = event.target.textContent
 
 render()
